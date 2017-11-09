@@ -4,13 +4,13 @@
 
 #version of library 
 VERSION=0.39
-#PREFIX = /Developer/Platforms/iPhoneOS.platform/Developer/
-PREFIX = /Developer/Platforms/iPhoneSimulator.platform/Developer/
-CC = $(PREFIX)/usr/bin/gcc-4.2
-#CFLAGS  +=  -I./ -I$(PREFIX)/SDKs/iPhoneOS4.3.sdk/usr/include  -Wall -W -Wshadow -Wsign-compare -arch armv7
-CFLAGS  +=  -I./ -I$(PREFIX)/SDKs/iPhoneOS4.3.sdk/usr/include  -Wall -W -Wshadow -Wsign-compare -arch i386
-AR = $(PREFIX)/usr/bin/ar
-RANLIB = $(PREFIX)/usr/bin/ranlib
+#PREFIX = arm-none-eabi-
+CC = $(PREFIX)gcc
+AR = $(PREFIX)ar
+RANLIB = $(PREFIX)ranlib
+
+CFLAGS = -I. -Wall -W -Wshadow -Wsign-compare
+#CFLAGS += -mthumb -march=armv7e-m -mfloat-abi=hard -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -fdata-sections -ffunction-sections
 
 ifndef MAKE
    MAKE=make
@@ -19,10 +19,10 @@ endif
 ifndef IGNORE_SPEED
 
 #for speed 
-CFLAGS += -O3 -funroll-loops
+#CFLAGS += -O3 -funroll-loops
 
 #for size 
-#CFLAGS += -Os
+CFLAGS += -Os
 
 #x86 optimizations [should be valid for any GCC install though]
 CFLAGS  += -fomit-frame-pointer
