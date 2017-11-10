@@ -4,13 +4,13 @@
 
 #version of library 
 VERSION=0.39
-#PREFIX = arm-none-eabi-
+PREFIX = arm-none-eabi-
 CC = $(PREFIX)gcc
 AR = $(PREFIX)ar
 RANLIB = $(PREFIX)ranlib
 
 CFLAGS = -I. -Wall -W -Wshadow -Wsign-compare
-#CFLAGS += -mthumb -march=armv7e-m -mfloat-abi=hard -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -fdata-sections -ffunction-sections
+CFLAGS += -mthumb -march=armv7e-m -mfloat-abi=hard -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -fdata-sections -ffunction-sections
 
 ifndef MAKE
    MAKE=make
