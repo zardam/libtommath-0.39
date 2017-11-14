@@ -8,6 +8,7 @@ PREFIX = arm-none-eabi-
 CC = $(PREFIX)gcc
 AR = $(PREFIX)ar
 RANLIB = $(PREFIX)ranlib
+OBJCOPY = $(PREFIX)objcopy
 
 CFLAGS = -I. -Wall -W -Wshadow -Wsign-compare
 CFLAGS += -mthumb -march=armv7e-m -mfloat-abi=hard -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -fdata-sections -ffunction-sections
@@ -92,6 +93,7 @@ bn_mp_to_signed_bin_n.o bn_mp_to_unsigned_bin_n.o
 $(LIBNAME):  $(OBJECTS)
 	$(AR) $(ARFLAGS) $@ $(OBJECTS)
 	$(RANLIB) $@
+	$(OBJCOPY) --redefine-sym mp_init=mp_tm_init $@
 
 #make a profiled library (takes a while!!!)
 #
